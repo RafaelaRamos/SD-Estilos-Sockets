@@ -18,6 +18,8 @@ import java.net.SocketException;
  * @author Cliente
  */
 public class NodeThread {
+    
+    //Tratar requisições usando Threads
   private static Socket socket =null;
     public static void main(String[] args) throws IOException {
        
@@ -27,11 +29,10 @@ public class NodeThread {
        try{ while (true) {
 
            socket = server.accept();
+           //cria uma thread para cada requisição
            Cliente c =  new Cliente(socket);
            c.start();
 
-            
-          
         }}
        catch(SocketException ex){
        socket.close();

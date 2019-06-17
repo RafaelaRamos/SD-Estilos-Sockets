@@ -22,14 +22,14 @@ import java.sql.SQLException;
 public class Node2 {
 
    
-
+//Sem Threads
     public static void main(String[] args) throws IOException, ClassNotFoundException, IOException, SQLException {
 
         Usuario u = new Usuario();
         UsuarioPersiste insert = new UsuarioPersiste();
 
         ServerSocket server = new ServerSocket(10999);
-        System.out.println("node 2 iniciado ...");
+        System.out.println("Aguardando requisições ...");
         int count = 0;
         
         while (true) {

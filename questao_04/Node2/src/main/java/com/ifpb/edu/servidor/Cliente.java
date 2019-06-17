@@ -53,7 +53,7 @@ public class Cliente extends Thread  {
             } catch (IOException | SQLException | ClassNotFoundException ex) {
             }
              
-                finally{
+             finally{
             if(socket == null){
                 try {
                     socket.close();
