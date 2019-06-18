@@ -32,14 +32,14 @@ public class Node4 {
 
                 int x = (int) array.get(0);
                 int y = (int) array.get(1);
-
+                //op1 realiza a soma
                 if (array.get(2).equals("op1")) {
                     resposta = x + y;
-
+                    //op2 realiza a subtracao
                 } else if (array.get(2).equals("op2")) {
                     resposta = x - y;
                 }
-
+                
                 DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
                 outputStream.writeInt(resposta);
                 outputStream.flush();

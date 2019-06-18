@@ -25,11 +25,13 @@ public class Node1 {
             array.add(4);
             array.add("op1");
             
-            
+            //verifica o tipo de operacao
+            //Se for do tipo op1 envia para o node 2
             if(array.get(2).equals("op1")){
              socket  = new Socket("localhost", 10999);
             }
             else{
+                //Se for do tipo op2 envia para o node 3
             socket  = new Socket("localhost", 9702);
            }
             

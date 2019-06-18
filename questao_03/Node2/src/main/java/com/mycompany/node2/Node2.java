@@ -36,12 +36,13 @@ public class Node2 {
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 ArrayList array = (ArrayList) inputStream.readObject();
                 Socket socket2 = null;
-
+                //Se for do tipo op1 envia direto para o node 4
                 if (array.get(2).equals("op1")) {
                     socket2 = new Socket("localhost", 9704);
                    
 
                 } else {
+                    //Se nao envia para o node 3
                     socket2 = new Socket("localhost", 10999);
                    
 

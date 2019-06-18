@@ -38,11 +38,12 @@ public class Node3 {
                 Integer result = 0;
 
                 Socket socket2 = null;
-
+                //operacao do tipo op2 envia direto para o node4
                 if (array.get(2).equals("op2")) {
                     socket2 = new Socket("localhost", 9704);
 
                 } else {
+                    //se nao envia para o node 2
                     socket2 = new Socket("localhost", 9702);
 
                 }
@@ -59,17 +60,18 @@ public class Node3 {
         }
 
     }
+    //requisicao| resposta
 
     private static int requestReply(Socket socket, ArrayList array) throws ClassNotFoundException, IOException {
 
         ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
         output.writeObject(array);
 
-        DataInputStream inputStream = new DataInputStream(socket.getInputStream());
-        Integer resposta = inputStream.readInt();
+        DataInputStream input = new DataInputStream(socket.getInputStream());
+        Integer resposta = input.readInt();
 
         output.close();
-        inputStream.close();
+        input.close();
 
         return resposta;
 
