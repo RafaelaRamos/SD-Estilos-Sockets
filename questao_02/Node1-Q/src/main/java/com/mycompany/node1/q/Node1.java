@@ -30,8 +30,11 @@ public class Node1 {
 
     public static void main(String[] args) throws IOException, UnknownHostException, ClassNotFoundException {
 
+        
+        //So responde operacao do tipo 1
         ServerSocket serverSocket = new ServerSocket(10999);
-        System.out.println("PRONTO...");
+        int resposta =0;
+        System.out.println("NODE 1 PRONTO...");
 
         while (true) {
             try {
@@ -44,20 +47,22 @@ public class Node1 {
                 if (array.get(0).equals("op1")) {
                     int y = (int) array.get(1);
                     int x = (int) array.get(2);
-                    int resultado = 2 * y * x;
-                    DataOutputStream output = new DataOutputStream(socket.getOutputStream());
-                    output.writeInt(resultado);
+                    resposta = 2 * y * x;
+                    
 
                 } else if (array.get(0).equals("op2")) {
-                    InetAddress addr = InetAddress.getByName("10.0.0.1");
-                    socket = new Socket(addr, 9701);
+                   
+                    socket = new Socket("localhost", 9701);
                     ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
                     outputStream.writeObject(array);
                     ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-                    String confirm = input.readUTF();
-                    System.out.println(confirm);
-
+                    resposta =input.readInt();
                 }
+                
+                    DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+                    output.writeInt(resposta);
+                
+                
             } catch (IOException e) {
             }
             socket.close();

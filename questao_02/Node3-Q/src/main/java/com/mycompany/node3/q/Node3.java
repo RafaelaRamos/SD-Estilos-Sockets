@@ -28,9 +28,9 @@ public class Node3 {
     private static ObjectInputStream inputStream;
 
     public static void main(String[] args) throws IOException, UnknownHostException, ClassNotFoundException {
-
+        //So responde operacao op2
         ServerSocket serverSocket = new ServerSocket(9701);
-
+        System.out.println("NODE 3 PRONTO...");
         //try{  
         while (true) {
 
@@ -38,32 +38,18 @@ public class Node3 {
 
             inputStream = new ObjectInputStream(socket.getInputStream());
             array = (ArrayList) inputStream.readObject();
-
+            //verifica o tipo de operacao
             if (array.get(0).equals("op2")) {
                 int x = (int) array.get(1);
                 int y = (int) array.get(2);
                 int resultado = (2 * x) / y;
-                System.out.println(resultado);
                 
-                if(socket.getInetAddress().equals("10.0.0.1")){
                 output = new DataOutputStream(socket.getOutputStream());
                 output.writeInt(resultado);
-                output.writeUTF("ok");
-                }
-                
-                else{
-                  output = new DataOutputStream(socket.getOutputStream());
-                    output.writeInt(resultado);
-                    System.out.println("dados" +resultado);
-                    output.close();
-                }
                
-                   
-            
-              
-            } else if (array.get(0).equals("op1")) {
+                //redireciona a requisicao para o node 1 ou 2
+              } else if (array.get(0).equals("op1")) {
                 socket2 = new Socket("localhost", 10999);
-
                 ObjectOutputStream outputStream = new ObjectOutputStream(socket2.getOutputStream());
                 outputStream.writeObject(array);
                 socket2.close();

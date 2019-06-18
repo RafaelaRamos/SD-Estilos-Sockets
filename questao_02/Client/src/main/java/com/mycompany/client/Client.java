@@ -18,41 +18,42 @@ import java.util.ArrayList;
  * @author Cliente
  */
 public class Client {
-
+    
     private static final ArrayList array = new ArrayList(2);
 
     private static Socket socket;
 
     public static void main(String[] args) throws IOException, SocketException {
-        array.add(0, "op2");
+        //tipo de operacao
+        array.add(0, "op1");
         //x
         array.add(1, 10);
         //y
         array.add(2, 10);
-
+// Caso ocorra erro ao se conectar com o node 1 na porta 10999 ira solicitar requisicao no node 3 porta 9701
         try {
 
             socket = new Socket("localhost", 10999);
 
             requestReply(socket, array);
         } catch (ConnectException e) {
-
+            
             socket = new Socket("localhost", 9701);
 
             requestReply(socket, array);
 
-        }catch(SocketException s){
-        s.printStackTrace();
-        
-        }
-       
-    }
+        } catch (SocketException s) {
+            s.printStackTrace();
 
+        }
+
+    }
+    //recebe requisicao |resposta
     public static void requestReply(Socket socket, ArrayList array) throws IOException {
-         ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
-        outputStream.writeObject(array);
-        DataInputStream in = new DataInputStream(socket.getInputStream());
-        int resposta = in.readInt();
+        ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+        output.writeObject(array);
+        DataInputStream input = new DataInputStream(socket.getInputStream());
+        int resposta = input.readInt();
         System.out.println(resposta);
 
     }
