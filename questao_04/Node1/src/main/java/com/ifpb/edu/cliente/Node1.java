@@ -32,6 +32,7 @@ public class Node1 {
 
                 socket = new Socket("localhost", 10999);
                 DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+                //Nome do usuario a ser inserido
                 String usuario = "Usuario" + i;
                 output.writeUTF(usuario);
                 DataInputStream input = new DataInputStream(socket.getInputStream());

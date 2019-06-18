@@ -50,6 +50,7 @@ public class Cliente extends Thread  {
                 resposta = true;
                 output=new DataOutputStream(socket.getOutputStream());
                 output.writeBoolean(resposta);
+                System.out.println("Inserido" + resposta);
             } catch (IOException | SQLException | ClassNotFoundException ex) {
             }
              

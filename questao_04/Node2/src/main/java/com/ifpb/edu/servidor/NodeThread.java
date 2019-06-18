@@ -27,7 +27,7 @@ public class NodeThread {
         System.out.println("Aguardando requisições ...");
         
        try{ while (true) {
-
+           
            socket = server.accept();
            //cria uma thread para cada requisição
            Cliente c =  new Cliente(socket);
